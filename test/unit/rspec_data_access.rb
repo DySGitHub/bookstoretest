@@ -3,6 +3,8 @@ require_relative '../../src/book'
 require_relative '../../src/data_access'
 require 'json'
 
+
+
 describe DataAccess do
   before(:each) do
     @sqlite_database = double(:sqlite_database)
@@ -14,6 +16,8 @@ describe DataAccess do
     @book4 = Book.new("4444", "title4","author2", 22.2, "genre2", 22)
   end
 
+    
+    
   describe '#isbnSearch' do
      context "required book is not in the remote cache" do
          it "should get it from the database and put it in both caches" do
@@ -22,8 +26,13 @@ describe DataAccess do
             expect(@dalli_client).to receive(:set).with('v_1111',1)
             expect(@dalli_client).to receive(:set).with('1111_1',@book1.to_cache)
             result = @data_access.isbnSearch('1111') 
-            expect(result).to eql @book1    
+            expect(result).to eql @book1  
+             
+             
          end
+         
+         
+         
      end
      context "required book is in the remote cache" do
          context "but not in the local cache" do

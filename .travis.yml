@@ -1,13 +1,11 @@
- language: ruby
-    rvm:
-    - 2.2.1
-     # changes from here
-    services:
-    - memcached
-    env:
-    - DB=test/integration/books.sqlite && MCACHE=localhost:11211
-    # changes to here
-    before_script:
-    - touch $DB && ruby test/integration/setup_datastores.rb
+language: ruby
+rvm:
+- 2.2.1
+services:
+- memcached
+env:
+- DB=test/integration/books.sqlite && MCACHE=localhost:11211
+before_script:
+- touch $DB && ruby test/integration/setup_datastores.rb
     script: 
-    - rspec test/integration/rspec_data_access.rb
+- rspec test/integration/rspec_data_access.rb
